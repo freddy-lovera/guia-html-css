@@ -959,11 +959,14 @@
   /* Ocultar menú toggle en desktop */
   .menu-toggle {
     display: none;
+  }
 </style>
 </head>
 <body>
 
 <div id="scroll-progress"></div>
+
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
 <!-- ═══════════════════════════════════════════════
      SIDEBAR
@@ -2711,6 +2714,18 @@ function checkAnswer(btn, isCorrect, qNum) {
   fb.innerHTML = isCorrect ? explanations[qNum].ok : explanations[qNum].err;
   fb.className = 'quiz-feedback show ' + (isCorrect ? 'ok' : 'err');
 }
+
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+document.querySelectorAll('#sidebar a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      document.getElementById('sidebar').classList.remove('open');
+    }
+  });
+});
 </script>
 
 </body>
